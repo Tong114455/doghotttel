@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXU GROOMING - Premium Spa Menu</title>
+    <!-- Google Fonts: Elegant Serif & Clean Sans-Serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #F9F8F6; /* Soft Cream */
+            --main-gold: #C5A059; /* Elegant Gold */
+            --soft-gold: #F3EFE6;
+            --dark-charcoal: #1A1A1A; /* Deep Black/Charcoal */
+            --gray-text: #666666;
+            --white: #FFFFFF;
+            --accent-green: #2C4C3B; /* Deep Emerald */
+            --card-radius: 12px;
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 15px 40px rgba(197, 160, 89, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--dark-charcoal);
+            padding: 20px 12px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient Glow Background */
+        .ambient-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            background: radial-gradient(circle at 50% 0%, rgba(197, 160, 89, 0.08) 0%, transparent 70%);
+        }
+
+        /* Particle Container - Golden Sparkles */
+        .particle-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-sparkle {
+            position: absolute;
+            font-size: 0.8rem;
+            color: var(--main-gold);
+            opacity: 0;
+            animation: floatSparkle 6s linear infinite;
+        }
+
+        @keyframes floatSparkle {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            20% { opacity: 0.6; }
+            80% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+
+        /* Main Card Container */
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background-color: var(--white);
+            border-radius: var(--card-radius);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            box-shadow: var(--shadow-soft);
+            padding: 40px 24px 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Language Toggle */
+        .lang-toggle {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background-color: var(--bg-color);
+            border: 1px solid var(--main-gold);
+            border-radius: 20px;
+            display: flex;
+            padding: 2px;
+            z-index: 10;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            padding: 4px 12px;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--gray-text);
+            cursor: pointer;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background-color: var(--main-gold);
+            color: var(--white);
+        }
+
+        /* Multi-language Visibility */
+        .text-en { display: none; }
+        body.lang-en .text-th { display: none !important; }
+        body.lang-en .text-en { display: inline-block; }
+
+        /* Header Styling */
+        .logo-icon {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--main-gold);
+            margin-bottom: 12px;
+            display: block;
+            cursor: pointer;
+            transition: transform 0.4s ease;
+        }
+
+        .logo-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .brand-subtitle {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.75rem;
+            color: var(--gray-text);
+            font-weight: 500;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .brand-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--dark-charcoal);
+            margin: 0 0 12px;
+            letter-spacing: 2px;
+        }
+
+        .brand-desc {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--dark-charcoal);
+            border-top: 1px solid rgba(197, 160, 89, 0.3);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 24px;
+        }
+
+        /* VIP Complimentary Card */
+        .complimentary-card {
+            background: linear-gradient(135deg, var(--dark-charcoal), #2A2A2A);
+            border-radius: var(--card-radius);
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 32px;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .comp-badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--main-gold);
+            color: var(--white);
+            padding: 2px 16px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .comp-title {
+            color: var(--main-gold);
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+        }
+
+        .comp-desc {
+            font-size: 0.8rem;
+            color: #E0E0E0;
+            font-weight: 300;
+        }
+
+        /* Section Titles */
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark-charcoal);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--soft-gold);
+        }
+
+        .card-title i {
+            color: var(--main-gold);
+            font-size: 1rem;
+        }
+
+        /* Table Styling */
+        .table-wrapper {
+            overflow-x: auto;
+            margin-bottom: 32px;
+        }
+
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .price-table th {
+            font-size: 0.75rem;
+            color: var(--gray-text);
+            font-weight: 500;
+            padding: 12px 4px;
+            text-align: center;
+            border-bottom: 1px solid var(--soft-gold);
+            text-transform: uppercase;
+        }
+
+        .price-table th small {
+            display: block;
+            font-family: 'Prompt', sans-serif;
+            color: var(--main-gold);
+            font-size: 0.65rem;
+            margin-top: 2px;
+        }
+
+        .price-table tr {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #F5F5F5;
+        }
+
+        .price-table tr:hover {
+            background-color: var(--bg-color);
+        }
+
+        .price-table tr.selected {
+            background-color: var(--soft-gold);
+            border-left: 3px solid var(--main-gold);
+        }
+
+        .price-table td {
+            padding: 14px 4px;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--dark-charcoal);
+        }
+
+        .price-table td:first-child {
+            text-align: left;
+            padding-left: 12px;
+            font-weight: 500;
+        }
+
+        /* Interactive Service Cards */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .service-card {
+            background-color: var(--white);
+            border: 1px solid #EBEBEB;
+            border-radius: var(--card-radius);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .service-card:hover {
+            border-color: var(--main-gold);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .service-card.active {
+            background-color: var(--soft-gold);
+            border-color: var(--main-gold);
+        }
+
+        .service-card.active::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            color: var(--main-gold);
+            font-size: 0.8rem;
+        }
+
+        .service-name {
+            font-weight: 500;
+            font-size: 0.85rem;
+            color: var(--dark-charcoal);
+            margin-bottom: 4px;
+        }
+
+        .service-en-sub {
+            font-size: 0.7rem;
+            color: var(--gray-text);
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .service-price-tag {
+            font-family: 'Prompt', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--main-gold);
+            align-self: flex-start;
+        }
+
+        /* Note Section */
+        .note-card {
+            background-color: var(--white);
+            border: 1px dashed var(--main-gold);
+            border-radius: var(--card-radius);
+            padding: 20px;
+            margin-bottom: 32px;
+        }
+
+        .note-header {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--dark-charcoal);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .note-header i { color: var(--main-gold); font-size: 0.9rem; }
+
+        .note-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-bottom: 6px;
+            border: 1px solid transparent;
+        }
+
+        .note-item:hover {
+            background-color: var(--bg-color);
+        }
+
+        .note-item.active {
+            background-color: var(--soft-gold);
+            border-color: rgba(197, 160, 89, 0.3);
+            font-weight: 500;
+        }
+
+        .note-price {
+            color: var(--main-gold);
+            font-weight: 600;
+        }
+
+        /* Calculator Dock */
+        .calculator-dock {
+            background: var(--dark-charcoal);
+            border-radius: var(--card-radius);
+            padding: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            margin-bottom: 24px;
+            color: var(--white);
+        }
+
+        .calc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .calc-title {
+            font-weight: 400;
+            font-size: 0.85rem;
+            color: #E0E0E0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .calc-total {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--main-gold);
+        }
+
+        .calc-details {
+            font-size: 0.75rem;
+            color: #A0A0A0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 16px;
+            font-weight: 300;
+        }
+
+        .book-btn {
+            width: 100%;
+            background-color: var(--main-gold);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            padding: 14px;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .book-btn:hover {
+            background-color: #B5904D;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(197, 160, 89, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #EBEBEB;
+        }
+
+        .social-link {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--dark-charcoal);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 24px;
+            border-radius: 20px;
+            border: 1px solid var(--dark-charcoal);
+            margin-bottom: 12px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background-color: var(--dark-charcoal);
+            color: var(--main-gold);
+        }
+
+        .footer-text {
+            font-size: 0.75rem;
+            color: var(--gray-text);
+            font-weight: 300;
+        }
+
+        /* Booking Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: var(--white);
+            border-radius: var(--card-radius);
+            width: 90%;
+            max-width: 400px;
+            padding: 32px 24px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            transform: translateY(30px);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: translateY(0);
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--dark-charcoal);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .summary-box {
+            background-color: var(--bg-color);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: left;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+            max-height: 200px;
+            overflow-y: auto;
+            color: var(--dark-charcoal);
+        }
+
+        .modal-close-btn {
+            width: 100%;
+            background-color: var(--dark-charcoal);
+            color: var(--main-gold);
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            cursor: pointer;
+            font-family: 'Prompt', sans-serif;
+            transition: background 0.3s;
+        }
+        
+        .modal-close-btn:hover {
+            background-color: #000000;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--dark-charcoal);
+            color: var(--main-gold);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 400;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<div class="ambient-glow"></div>
+<div class="particle-container" id="particle-container"></div>
+
+<div class="container">
+    
+    <div class="lang-toggle">
+        <button id="btn-th" class="lang-btn active" onclick="switchLang('th')">TH</button>
+        <button id="btn-en" class="lang-btn" onclick="switchLang('en')">EN</button>
+    </div>
+
+    <i class="fa-solid fa-crown logo-icon" onclick="triggerEffect(event)"></i>
+    
+    <header class="header">
+        <div class="brand-subtitle">Exclusive Pet Spa</div>
+        <h1 class="brand-title">LUXU GROOMING</h1>
+        <div class="brand-desc">
+            <span class="text-th">บริการอาบน้ำตัดขนระดับพรีเมียม</span>
+            <span class="text-en">Premium Dog Bath & Grooming</span>
+        </div>
+    </header>
+
+    <div class="complimentary-card">
+        <div class="comp-badge">VIP PRIVILEGE</div>
+        <div class="comp-title">
+            <span class="text-th">บริการเสริมฟรีทุกแพ็กเกจ</span><span class="text-en">COMPLIMENTARY SERVICES</span>
+        </div>
+        <div class="comp-desc">
+            <span class="text-th">เช็ดหู • ตัดเล็บ • ไถเท้า ท้อง ก้น</span>
+            <span class="text-en">Ear cleaning • Nail trimming • Pad & Belly shave</span>
+        </div>
+    </div>
+
+    <div>
+        <div class="card-title">
+            <i class="fa-solid fa-balance-scale"></i>
+            <span class="text-th">อัตราค่าบริการตามน้ำหนัก</span>
+            <span class="text-en">Rates by Weight</span>
+        </div>
+        
+        <div class="table-wrapper">
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th style="width: 28%;">
+                            <span class="text-th">น้ำหนัก<small>Weight</small></span>
+                            <span class="text-en">Weight</span>
+                        </th>
+                        <th>
+                            <span class="text-th">อาบน้ำ<small>Bath</small></span>
+                            <span class="text-en">Bath</span>
+                        </th>
+                        <th>
+                            <span class="text-th">อาบ+โกน<small>+Shave</small></span>
+                            <span class="text-en">Bath<br>+Shave</span>
+                        </th>
+                        <th>
+                            <span class="text-th">อาบ+ตัด<small>+Cut</small></span>
+                            <span class="text-en">Bath<br>+Cut</span>
+                        </th>
+                        <th>
+                            <span class="text-th">อาบ+ไถ<small>+Plow</small></span>
+                            <span class="text-en">Bath<br>+Plow</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="weight-table-body">
+                    <tr data-weight="< 2 kg" data-p1="300" data-p2="450" data-p3="500" data-p4="400">
+                        <td>&lt; 2 kg.</td><td>300</td><td>450</td><td>500</td><td>400</td>
+                    </tr>
+                    <tr data-weight="2-9 kg" data-p1="450" data-p2="600" data-p3="650" data-p4="550">
+                        <td>2-9 kg.</td><td>450</td><td>600</td><td>650</td><td>550</td>
+                    </tr>
+                    <tr data-weight="10-19 kg" data-p1="600" data-p2="750" data-p3="800" data-p4="700">
+                        <td>10-19 kg.</td><td>600</td><td>750</td><td>800</td><td>700</td>
+                    </tr>
+                    <tr data-weight="20-29 kg" data-p1="750" data-p2="900" data-p3="950" data-p4="850">
+                        <td>20-29 kg.</td><td>750</td><td>900</td><td>950</td><td>850</td>
+                    </tr>
+                    <tr data-weight="30-39 kg" data-p1="850" data-p2="1000" data-p3="1050" data-p4="950">
+                        <td>30-39 kg.</td><td>850</td><td>1,000</td><td>1,050</td><td>950</td>
+                    </tr>
+                    <tr data-weight="40-49 kg" data-p1="950" data-p2="1100" data-p3="1150" data-p4="1050">
+                        <td>40-49 kg.</td><td>950</td><td>1,100</td><td>1,150</td><td>1,050</td>
+                    </tr>
+                    <tr data-weight="50+ kg" data-p1="1000" data-p2="1500" data-p3="1200" data-p4="1100">
+                        <td>50 kg.+</td><td>1,000</td><td>1,500</td><td>1,200</td><td>1,100</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div>
+        <div class="card-title">
+            <i class="fa-solid fa-spa"></i>
+            <span class="text-th">บริการอื่นๆ</span>
+            <span class="text-en">A La Carte Services</span>
+        </div>
+        
+        <div class="service-grid">
+            <div class="service-card" data-service-id="gland" data-price="150" data-name-th="บีบต่อม" data-name-en="Gland Squeezing">
+                <div>
+                    <div class="service-name text-th">บีบต่อม</div>
+                    <div class="service-name text-en">Gland Squeezing</div>
+                    <span class="service-en-sub text-th">Gland Squeezing</span>
+                </div>
+                <span class="service-price-tag">150.-</span>
+            </div>
+
+            <div class="service-card" data-service-id="nail" data-price="150" data-name-th="ตัดเล็บ" data-name-en="Nail Trimming">
+                <div>
+                    <div class="service-name text-th">ตัดเล็บ</div>
+                    <div class="service-name text-en">Nail Trimming</div>
+                    <span class="service-en-sub text-th">Nail Trimming</span>
+                </div>
+                <span class="service-price-tag">150.-</span>
+            </div>
+
+            <div class="service-card" data-service-id="brush" data-price="100" data-name-th="สางขน" data-name-en="Hair Brushing">
+                <div>
+                    <div class="service-name text-th">สางขน</div>
+                    <div class="service-name text-en">Hair Brushing</div>
+                    <span class="service-en-sub text-th">Hair Brushing</span>
+                </div>
+                <span class="service-price-tag">100+</span>
+            </div>
+
+            <div class="service-card" data-service-id="spot" data-price="100" data-name-th="ตกแต่งเฉพาะจุด" data-name-en="Spot Grooming">
+                <div>
+                    <div class="service-name text-th">ตกแต่งเฉพาะจุด</div>
+                    <div class="service-name text-en">Spot Grooming</div>
+                    <span class="service-en-sub text-th">Spot Grooming</span>
+                </div>
+                <span class="service-price-tag">100+</span>
+            </div>
+
+            <div class="service-card" data-service-id="shave_parts" data-price="250" data-name-th="ไถเท้า ท้อง ก้น" data-name-en="Pad, Belly, Sanitary Shave">
+                <div>
+                    <div class="service-name text-th">ไถเท้า ท้อง ก้น</div>
+                    <div class="service-name text-en">Pad, Belly, Sanitary Shave</div>
+                    <span class="service-en-sub text-th">Sanitary Shave</span>
+                </div>
+                <span class="service-price-tag">250.-</span>
+            </div>
+
+            <div class="service-card" data-service-id="ear" data-price="100" data-name-th="เช็ดหู + ถอนขนหู" data-name-en="Ear Cleaning & Plucking">
+                <div>
+                    <div class="service-name text-th">เช็ดหู + ถอนขนหู</div>
+                    <div class="service-name text-en">Ear Cleaning & Plucking</div>
+                    <span class="service-en-sub text-th">Ear Care</span>
+                </div>
+                <span class="service-price-tag">100.-</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="note-card">
+        <div class="note-header">
+            <i class="fa-solid fa-star"></i>
+            <span class="text-th">บวกเพิ่มเฉพาะสายพันธุ์ / ขนยาวพิเศษ</span>
+            <span class="text-en">Special Breed & Coat Surcharges</span>
+        </div>
+        <div class="note-item" data-addon-id="husky" data-price="250" data-name-th="ไซบีเรียน (Husky)" data-name-en="Siberian Husky">
+            <div>
+                <span class="text-th">ไซบีเรียน (Siberian)</span>
+                <span class="text-en">Siberian Husky</span>
+            </div>
+            <span class="note-price">+250.-</span>
+        </div>
+        <div class="note-item" data-addon-id="golden" data-price="300" data-name-th="โกลเด้น (Golden)" data-name-en="Golden Retriever">
+            <div>
+                <span class="text-th">โกลเด้น (Golden)</span>
+                <span class="text-en">Golden Retriever</span>
+            </div>
+            <span class="note-price">+200 ~ 400.-</span>
+        </div>
+        <div class="note-item" data-addon-id="longhair" data-price="350" data-name-th="ขนยาวพิเศษ (Longhair)" data-name-en="Extra Longhair">
+            <div>
+                <span class="text-th">ขนยาวพิเศษ (Extra Longhair)</span>
+                <span class="text-en">Extra Longhair</span>
+            </div>
+            <span class="note-price">+200 ~ 500.-</span>
+        </div>
+    </div>
+
+    <div class="calculator-dock">
+        <div class="calc-header">
+            <div class="calc-title">
+                <span class="text-th">ราคาประเมินเบื้องต้น</span>
+                <span class="text-en">Estimated Total</span>
+            </div>
+            <div class="calc-total" id="total-price-display">0.-</div>
+        </div>
+        <div class="calc-details" id="calc-summary-text">
+            <span class="text-th">คลิกเลือกรายการราคาด้านบนเพื่อคำนวณ</span>
+            <span class="text-en">Select services above to calculate</span>
+        </div>
+        <button class="book-btn" onclick="openBookingModal()">
+            <i class="fa-regular fa-calendar-check"></i>
+            <span class="text-th">สรุปรายการ & จองคิว</span>
+            <span class="text-en">Summary & Reserve</span>
+        </button>
+    </div>
+
+    <footer class="footer">
+        <a href="https://line.me" target="_blank" class="social-link">
+            <i class="fa-brands fa-line"></i> IG: @luxupethotel
+        </a>
+        <div class="footer-text">
+            <span class="text-th">Experience the finest grooming for your beloved pets.</span>
+            <span class="text-en">Experience the finest grooming for your beloved pets.</span>
+        </div>
+    </footer>
+</div>
+
+<div class="modal-overlay" id="bookingModal">
+    <div class="modal-card">
+        <div class="modal-title">
+            <span class="text-th">สรุปรายการบริการ</span><span class="text-en">Service Summary</span>
+        </div>
+        <div class="summary-box" id="modal-summary-content">
+        </div>
+        <button class="modal-close-btn" onclick="copyAndClose()">
+            <span class="text-th">คัดลอกรายการ & ปิด</span>
+            <span class="text-en">Copy & Close</span>
+        </button>
+    </div>
+</div>
+
+<div class="toast" id="toast">คัดลอกรายการเรียบร้อยแล้ว ✨</div>
+
+<script>
+    let selectedMainService = null; 
+    let selectedExtraServices = new Set();
+    let selectedAddons = new Set();
+    let currentLang = 'th';
+
+    function createParticles() {
+        const container = document.getElementById('particle-container');
+        for (let i = 0; i < 15; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'floating-sparkle';
+            particle.innerHTML = '✦';
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.animationDuration = `${4 + Math.random() * 5}s`;
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+            container.appendChild(particle);
+        }
+    }
+
+    function switchLang(lang) {
+        currentLang = lang;
+        const body = document.body;
+        const btnTh = document.getElementById('btn-th');
+        const btnEn = document.getElementById('btn-en');
+        
+        if (lang === 'en') {
+            body.classList.add('lang-en');
+            btnEn.classList.add('active');
+            btnTh.classList.remove('active');
+        } else {
+            body.classList.remove('lang-en');
+            btnTh.classList.add('active');
+            btnEn.classList.remove('active');
+        }
+        updateCalculatorDisplay();
+    }
+
+    document.querySelectorAll('#weight-table-body tr').forEach(row => {
+        const cells = row.querySelectorAll('td');
+        const weightText = row.dataset.weight;
+        const serviceTypesTH = ['อาบน้ำ', 'อาบ+โกน', 'อาบ+ตัด', 'อาบ+ไถ'];
+        const serviceTypesEN = ['Bath', 'Bath+Shave', 'Bath+Cut', 'Bath+Plow'];
+
+        cells.forEach((cell, index) => {
+            if (index === 0) return; 
+
+            cell.addEventListener('click', (e) => {
+                e.stopPropagation();
+                document.querySelectorAll('#weight-table-body td').forEach(c => c.style.backgroundColor = '');
+                document.querySelectorAll('#weight-table-body tr').forEach(r => r.classList.remove('selected'));
+
+                const price = parseInt(row.dataset[`p${index}`]);
+                selectedMainService = {
+                    weight: weightText,
+                    typeTH: serviceTypesTH[index - 1],
+                    typeEN: serviceTypesEN[index - 1],
+                    price: price
+                };
+
+                row.classList.add('selected');
+                triggerGlowEffect(e);
+                updateCalculatorDisplay();
+            });
+        });
+    });
+
+    document.querySelectorAll('.service-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            const serviceId = card.dataset.serviceId;
+            const price = parseInt(card.dataset.price);
+            const nameTH = card.dataset.nameTh;
+            const nameEN = card.dataset.nameEn;
+
+            if (card.classList.contains('active')) {
+                card.classList.remove('active');
+                selectedExtraServices.delete(serviceId);
+            } else {
+                card.classList.add('active');
+                selectedExtraServices.add({ id: serviceId, price, nameTH, nameEN });
+            }
+
+            triggerGlowEffect(e);
+            updateCalculatorDisplay();
+        });
+    });
+
+    document.querySelectorAll('.note-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+            const addonId = item.dataset.addonId;
+            const price = parseInt(item.dataset.price);
+            const nameTH = item.dataset.nameTh;
+            const nameEN = item.dataset.nameEn;
+
+            if (item.classList.contains('active')) {
+                item.classList.remove('active');
+                selectedAddons.delete(addonId);
+            } else {
+                item.classList.add('active');
+                selectedAddons.add({ id: addonId, price, nameTH, nameEN });
+            }
+
+            triggerGlowEffect(e);
+            updateCalculatorDisplay();
+        });
+    });
+
+    function updateCalculatorDisplay() {
+        let total = 0;
+        let summaryList = [];
+
+        if (selectedMainService) {
+            total += selectedMainService.price;
+            summaryList.push(currentLang === 'th' 
+                ? `${selectedMainService.typeTH} (${selectedMainService.weight})` 
+                : `${selectedMainService.typeEN} (${selectedMainService.weight})`);
+        }
+
+        selectedExtraServices.forEach(item => {
+            total += item.price;
+            summaryList.push(currentLang === 'th' ? item.nameTH : item.nameEN);
+        });
+
+        selectedAddons.forEach(item => {
+            total += item.price;
+            summaryList.push(currentLang === 'th' ? item.nameTH : item.nameEN);
+        });
+
+        animateCounter('total-price-display', total);
+
+        const summaryText = document.getElementById('calc-summary-text');
+        if (summaryList.length === 0) {
+            summaryText.innerHTML = currentLang === 'th' 
+                ? 'คลิกเลือกรายการราคาด้านบนเพื่อคำนวณ' 
+                : 'Select services above to calculate';
+        } else {
+            summaryText.innerHTML = summaryList.join(' + ');
+        }
+    }
+
+    function animateCounter(elementId, targetVal) {
+        const el = document.getElementById(elementId);
+        const currentVal = parseInt(el.innerText.replace(/[^0-9]/g, '')) || 0;
+        const duration = 300;
+        const startTime = performance.now();
+
+        function update(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const value = Math.floor(currentVal + (targetVal - currentVal) * progress);
+            el.innerText = `${value.toLocaleString()}.-`;
+            if (progress < 1) requestAnimationFrame(update);
+        }
+        requestAnimationFrame(update);
+    }
+
+    function openBookingModal() {
+        const modal = document.getElementById('bookingModal');
+        const content = document.getElementById('modal-summary-content');
+        let html = '';
+        let total = 0;
+
+        if (!selectedMainService && selectedExtraServices.size === 0 && selectedAddons.size === 0) {
+            html = `<p style="text-align: center; color: #888; padding: 20px 0;">${currentLang === 'th' ? 'กรุณาเลือกบริการที่ต้องการ' : 'No service selected'}</p>`;
+        } else {
+            html += `<ul style="list-style: none; padding: 0;">`;
+            if (selectedMainService) {
+                total += selectedMainService.price;
+                html += `<li style="display:flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px dashed #DDD; padding-bottom: 8px;">
+                    <span><i class="fa-solid fa-dog" style="color:var(--main-gold); margin-right:8px;"></i> ${selectedMainService.typeTH} (${selectedMainService.weight})</span>
+                    <strong>${selectedMainService.price}.-</strong>
+                </li>`;
+            }
+            selectedExtraServices.forEach(item => {
+                total += item.price;
+                html += `<li style="display:flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px dashed #DDD; padding-bottom: 8px;">
+                    <span><i class="fa-solid fa-check" style="color:var(--main-gold); margin-right:8px;"></i> ${item.nameTH}</span>
+                    <strong>${item.price}.-</strong>
+                </li>`;
+            });
+            selectedAddons.forEach(item => {
+                total += item.price;
+                html += `<li style="display:flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px dashed #DDD; padding-bottom: 8px;">
+                    <span><i class="fa-solid fa-plus" style="color:var(--main-gold); margin-right:8px;"></i> ${item.nameTH}</span>
+                    <strong>+${item.price}.-</strong>
+                </li>`;
+            });
+            html += `</ul>`;
+            html += `<div style="display:flex; justify-content: space-between; font-weight: 600; font-size: 1.1rem; color: var(--dark-charcoal); margin-top: 16px;">
+                <span>ยอดประเมินรวม:</span>
+                <span style="color:var(--main-gold);">${total.toLocaleString()}.-</span>
+            </div>`;
+        }
+
+        content.innerHTML = html;
+        modal.classList.add('active');
+    }
+
+    function copyAndClose() {
+        const modal = document.getElementById('bookingModal');
+        modal.classList.remove('active');
+        showToast(currentLang === 'th' ? 'คัดลอกรายการเรียบร้อยแล้ว ✨' : 'Copied to clipboard ✨');
+    }
+
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        toast.innerText = msg;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+
+    function triggerGlowEffect(e) {
+        const circle = document.createElement('div');
+        circle.style.position = 'fixed';
+        circle.style.left = `${e.clientX - 15}px`;
+        circle.style.top = `${e.clientY - 15}px`;
+        circle.style.width = '30px';
+        circle.style.height = '30px';
+        circle.style.borderRadius = '50%';
+        circle.style.background = 'rgba(197, 160, 89, 0.4)';
+        circle.style.pointerEvents = 'none';
+        circle.style.transform = 'scale(0)';
+        circle.style.transition = 'transform 0.5s ease-out, opacity 0.5s ease-out';
+        circle.style.zIndex = '9999';
+
+        document.body.appendChild(circle);
+
+        setTimeout(() => {
+            circle.style.transform = 'scale(3)';
+            circle.style.opacity = '0';
+        }, 10);
+
+        setTimeout(() => circle.remove(), 500);
+    }
+
+    function triggerEffect(e) {
+        triggerGlowEffect(e);
+        showToast('Welcome to LUXU GROOMING ✨');
+    }
+
+    window.onload = () => {
+        createParticles();
+    };
+</script>
+
+</body>
+</html>
